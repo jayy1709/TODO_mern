@@ -1,4 +1,5 @@
 import * as api from '../api';
+
 export const readTodos = async () => {
     try {
         const { data } = await api.readTodos()
@@ -31,7 +32,8 @@ export const updateTodo = async (id,todo) => {
 export const deleteTodo = async (id) => {
     try {
          await api.deleteTodo(id)
-    } catch (error) {
+    
+        } catch (error) {
         return error
     }
 }
