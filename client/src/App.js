@@ -47,14 +47,13 @@ function App() {
   }
   const removeTodo = async (id) => {
     await deleteTodo(id);
-    const todosCopy = [...todos];
-    todosCopy.filter(todo => todo._id !== id);
-    setTodos(todosCopy);
+    const result = await readTodos();
+      setTodos(result)
+    
   }
   return (
     <div className="container">
       <div className="row">
-        <pre>{JSON.stringify(todo)}</pre>
         <form className="col s12" onSubmit={onSubmitHandler}>
           <div className="row">
             <div className="input-field col s6">
@@ -79,7 +78,8 @@ function App() {
           </div>
         </form>
         {
-          !todos ? <Preloader /> : todos.length > 0 ? <ul className="collection">
+          !todos ? <Preloader /> : todos.length > 0 ?
+           <ul className="collection">
             {todos.map(todo => (
               <li key={todo._id}
                 onClick={() => setCurrentId(todo._id)}
